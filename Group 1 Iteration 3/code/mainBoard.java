@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.*;
-import java.math.*;
 
 public class mainBoard extends JFrame{
 	private JPanel top_panel;
@@ -73,7 +72,7 @@ public class mainBoard extends JFrame{
 				int finalI = i;
 				int finalJ = j;
 				squares[i][j].addActionListener(e -> {
-					processClick(finalI, finalJ);
+					actionOnEachClick(finalI, finalJ);
 					return;
 				});
 			}
@@ -141,7 +140,7 @@ public class mainBoard extends JFrame{
 		return false;
 
 	}
-	public void processClick(int i, int j){
+	public void actionOnEachClick(int i, int j){
 		if(validMovements(i,j)==false){
 			return;
 		}
