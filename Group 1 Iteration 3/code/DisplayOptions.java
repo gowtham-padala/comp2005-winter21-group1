@@ -79,5 +79,6 @@ public class DisplayOptions extends JFrame {
 		startButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		startButton.setBounds(120, 244, 86, 29);
 		contentPane.add(startButton);
+
 	}
 }

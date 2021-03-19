@@ -24,12 +24,12 @@ public class newGame{
     private JTextField name_3;
     private JTextField name_4;
     private String players_details;
-    private Board gameboard;
+
 
 
     public newGame() {
         initialize();
-        gameboard = new Board();
+
     }
 
     /**
@@ -320,5 +320,6 @@ public class newGame{
         frmNewGame.getContentPane().add(cancel_button);
         
         frmNewGame.setVisible(false);
+        frmNewGame.setLocationRelativeTo(null);//shows the window on centre
     }
 }
