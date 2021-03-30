@@ -21,6 +21,7 @@ public class mainBoard extends JFrame{
 	private int col=2;
 	private int[][] map;
 	private int randint;
+	private Dice dice=new Dice();
 
 	private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
@@ -168,8 +169,8 @@ public class mainBoard extends JFrame{
 		bottom_panel.add(diceimg);
 		rollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Random rand = new Random();
-				randint = rand.nextInt(6)+1;
+				dice.roll();
+				randint=dice.getRandint();
 				ImageIcon dices= new ImageIcon("images/dice_"+randint+".png");
 				diceimg.setIcon(dices);
 				bottom_panel.add(diceimg);
@@ -186,7 +187,7 @@ public class mainBoard extends JFrame{
 	public boolean validMovements(int i, int j){
 
 		int validRow=Math.abs(i-row);
-		int validCol=Math.abs(i-row);
+		int validCol=Math.abs(j-row);
 		
 		if (validRow==1 ){
 			return true;
