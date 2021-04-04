@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -22,12 +23,12 @@ public class mainBoard extends JFrame{
 	private int[][] map;
 	private int randint;
 	private Dice dice=new Dice();
-	private Player[] players;
+	private LinkedList<Player> players;
 
 	private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
 
-	public mainBoard(Player[] var0)
+	public mainBoard(LinkedList<Player> var0)
 	{
 		this.players=var0;
 
@@ -48,13 +49,13 @@ public class mainBoard extends JFrame{
 		JMenu menu = new JMenu("File");
 		menuBar.add(menu);
 		JMenuItem item1 = new JMenuItem("New Game");
-           item1.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                    NewGameWin ng = new NewGameWin();
-                    ng.setVisible(true);
-                }
-            });
+		item1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				NewGameWin ng = new NewGameWin();
+				ng.setVisible(true);
+			}
+		});
 		menu.add(item1);
 
 		JMenuItem item2 = new JMenuItem("Save Game");
@@ -64,12 +65,12 @@ public class mainBoard extends JFrame{
 		menu.add(item3);
 
 		JMenuItem item4 = new JMenuItem("Help");
-            item4.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    help hp = new help();
-                    hp.setVisible(true);
-                }
-            });
+		item4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				help hp = new help();
+				hp.setVisible(true);
+			}
+		});
 		menu.add(item4);
 
 		JMenuItem item5 = new JMenuItem("Quit Game");
@@ -142,30 +143,30 @@ public class mainBoard extends JFrame{
 		rollBtn.setBounds(5, 26, 60, 26);
 		bottom_panel.add(rollBtn);
 
-		JLabel p1l1 = new JLabel(players[0].getName()+"\r\n\r\n");
+		JLabel p1l1 = new JLabel(players.get(0).getName()+"\r\n\r\n");
 		p1l1.setForeground(Color.RED);
 		p1l1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p1l1.setBounds(106, 30, 100, 21);
 		bottom_panel.add(p1l1);
 
-		JLabel p2l2 = new JLabel(players[1].getName()+"\r\n\r\n");
+		JLabel p2l2 = new JLabel(players.get(1).getName()+"\r\n\r\n");
 		p2l2.setForeground(Color.BLUE);
 		p2l2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p2l2.setBounds(226, 30, 100, 21);
 		bottom_panel.add(p2l2);
 
-		JLabel p3l3 = new JLabel(players[2].getName()+"\r\n\r\n");
+		JLabel p3l3 = new JLabel(players.get(2).getName()+"\r\n\r\n");
 		p3l3.setForeground(Color.YELLOW);
 		p3l3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p3l3.setBounds(342, 30, 100, 21);
 		bottom_panel.add(p3l3);
 
-		JLabel p4l4 = new JLabel(players[3].getName()+"\r\n\r\n");
+		JLabel p4l4 = new JLabel(players.get(3).getName()+"\r\n\r\n");
 		p4l4.setForeground(Color.GREEN);
 		p4l4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p4l4.setBounds(458, 30, 100, 21);
 		bottom_panel.add(p4l4);
-		
+
 		JLabel diceimg = new JLabel();
 		diceimg.setIcon(dices);
 		bottom_panel.add(diceimg);
@@ -190,7 +191,7 @@ public class mainBoard extends JFrame{
 
 		int validRow=Math.abs(i-randint);
 		int validCol=Math.abs(j-randint);
-		
+
 		if (validRow==(validRow+validCol) ){
 			return true;
 		}
@@ -210,16 +211,16 @@ public class mainBoard extends JFrame{
 		col=j;
 	}
 	private ImageIcon createImageIcon(final String name) {
-        try {
-            BufferedImage pictureID = ImageIO.read(new File(name));
-            ImageIcon icon = new ImageIcon(pictureID);
-            return icon;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+		try {
+			BufferedImage pictureID = ImageIO.read(new File(name));
+			ImageIcon icon = new ImageIcon(pictureID);
+			return icon;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 
-    }
+	}
 
 }
 
