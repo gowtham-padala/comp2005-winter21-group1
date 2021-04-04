@@ -272,12 +272,12 @@ public class NewGameWin extends JFrame {
 
 				if(choice_box_3.isSelected()) {
 					players_details = players_details + "3 "+ type_3.getSelectedItem() + " " + name_3.getText() + " " + level_3.getSelectedItem()  + "\n" ;
-					name_3.setText(player_3.getName());
+
 				}
 
 				if(choice_box_4.isSelected()) {
 					players_details = players_details + "4 "+ type_4.getSelectedItem() + " " + name_4.getText() + " " + level_4.getSelectedItem()  + "\n";
-					name_3.setText(player_3.getName());
+
 				}
 
 				System.out.println(players_details);
