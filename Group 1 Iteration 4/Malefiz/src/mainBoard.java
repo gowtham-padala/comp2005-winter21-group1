@@ -13,7 +13,7 @@ import java.math.*;
 
 public class mainBoard extends JFrame{
 	private int turn = 0;
-	private int display;
+	private int playerTurn=1;
 	private JPanel top_panel;
 	private JPanel centre_panel;
 	private JPanel bottom_panel;
@@ -31,7 +31,6 @@ public class mainBoard extends JFrame{
 	public mainBoard(LinkedList<Player> var0)
 	{
 		this.players=var0;
-
 		Container contentPane = getContentPane();
 		setBounds(100, 100, 600, 600);
 		contentPane.setLayout(new BorderLayout());
@@ -81,22 +80,22 @@ public class mainBoard extends JFrame{
 		centre_panel.setLayout(new GridLayout(17,17));
 		int[][] map = {
 				{0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
-				{1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1},
+				{1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1},
 				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1},
-				{0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,1,1,3,1,1,0,0,0,0,0,0},
+				{1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1},
+				{0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,1,2,1,1,0,0,0,0,0,0},
 				{0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0},
-				{0,0,0,0,1,1,3,1,1,1,3,1,1,0,0,0,0},
+				{0,0,0,0,1,1,2,1,1,1,2,1,1,0,0,0,0},
 				{0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0},
 				{0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
 				{0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0},
-				{3,1,1,1,3,1,1,1,3,1,1,1,3,1,1,1,3},
+				{2,1,1,1,2,1,1,1,2,1,1,1,2,1,1,1,2},
 				{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1},
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-				{0,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,0},
-				{0,2,2,2,0,2,2,2,0,2,2,2,0,2,2,2,0},
-				{0,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,0}
+				{0,0,3,0,0,0,4,0,0,0,5,0,0,0,6,0,0},
+				{0,3,3,3,0,4,4,4,0,5,5,5,0,6,6,6,0},
+				{0,0,3,0,0,0,4,0,0,0,5,0,0,0,6,0,0}
 		};
 		for(int i = 0; i < 17; i++) {
 			for (int j = 0; j < 17; j++) {
@@ -119,10 +118,28 @@ public class mainBoard extends JFrame{
 					squares[i][j].setEnabled(false);
 					centre_panel.add(squares[i][j]);
 				}
-				else if (map[i][j]==2)
+				else if (map[i][j]==3)
 				{
 					squares[i][j] = new JButton();
-					squares[i][j].setBackground(Color.GREEN);
+					squares[i][j].setBackground(players.get(0).getColor());
+					centre_panel.add(squares[i][j]);
+				}
+				else if (map[i][j]==4)
+				{
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(1).getColor());
+					centre_panel.add(squares[i][j]);
+				}
+				else if (map[i][j]==5)
+				{
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(2).getColor());
+					centre_panel.add(squares[i][j]);
+				}
+				else if (map[i][j]==6)
+				{
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(3).getColor());
 					centre_panel.add(squares[i][j]);
 				}
 				else
@@ -177,9 +194,9 @@ public class mainBoard extends JFrame{
 				ImageIcon dices= new ImageIcon("images/dice_"+randint+".png");
 				diceimg.setIcon(dices);
 				bottom_panel.add(diceimg);
-				turn = turn + 1;
-				display = turn%4+1;
-				playerTurnLabel.setText("Player "+ display + "'s turn");
+				turn++;
+				playerTurn = (turn%4)+1;
+				playerTurnLabel.setText("Player "+ playerTurn + "'s turn");
 			}
 		});
 		bottom_panel.setBackground(Color.darkGray);
@@ -192,21 +209,21 @@ public class mainBoard extends JFrame{
 		int validRow=Math.abs(i-randint);
 		int validCol=Math.abs(j-randint);
 
-		if (validRow==(validRow+validCol) ){
+		if (validRow==randint ){
 			return true;
 		}
-		if (validCol==validRow+validCol){
+		if (validCol==randint){
 			return true;
 		}
 		return false;
 
 	}
 	public void processClick(int i, int j){
-		if(validMovements(i,j)==false){
+		/*if(validMovements(i,j)==false){
 			return;
-		}
+		}*/
 		squares[row][col].setBackground(Color.pink);
-		squares[i][j].setBackground(Color.red);
+		squares[i][j].setBackground(players.get(playerTurn-1).getColor());
 		row=i;
 		col=j;
 	}

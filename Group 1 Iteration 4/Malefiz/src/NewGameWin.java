@@ -93,6 +93,10 @@ public class NewGameWin extends JFrame {
 
 		name_1 = new JTextField();
 		name_1.setText("Human 1");
+		name_1.addActionListener(e->{
+			String input=name_1.getText();
+			player_1=new Player(input,Color.red);
+		});
 		player_1=new Player(name_1.getText(),Color.red);
 		players_attending_game.add(player_1);
 		name_1.setBounds(210, 69, 96, 19);
@@ -109,6 +113,7 @@ public class NewGameWin extends JFrame {
 		name_2.setColumns(10);
 
 		name_3 = new JTextField();
+		name_3.setText("Human 3");
 		name_3.setEnabled(false);
 		player_3=new Player(name_3.getText(),Color.yellow);
 		players_attending_game.add(player_3);
@@ -117,7 +122,7 @@ public class NewGameWin extends JFrame {
 		name_3.setColumns(10);
 
 		name_4 = new JTextField();
-
+		name_4.setText("Human 4");
 		name_4.setEnabled(false);
 		player_4=new Player(name_4.getText(),Color.green);
 		players_attending_game.add(player_4);
