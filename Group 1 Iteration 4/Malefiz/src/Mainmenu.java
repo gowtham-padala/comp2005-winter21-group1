@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
 
 public class Mainmenu extends JFrame
 {
-    private newGame myGame;
+
     public Mainmenu()
     {
         super("");
         makeFrame();
-        myGame =new newGame();
+
     }
 
 

@@ -25,19 +25,20 @@ public class NewGameWin extends JFrame {
 	private JTextField name_3;
 	private JTextField name_4;
 	private String players_details;
+	private Player player_1;
+	private Player player_2;
+	private Player player_3;
+	private Player player_4;
+	private Player[] players_attending_game;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-					NewGameWin frame = new NewGameWin();
-					frame.setVisible(true);
-	}
+
+
 
 	/**
 	 * Create the frame.
 	 */
 	public NewGameWin() {
+		players_attending_game=new Player[4];
 		setResizable(false);
 		setTitle("New Game");
 		setBounds(100, 100, 410, 390);
@@ -93,22 +94,31 @@ public class NewGameWin extends JFrame {
 		name_1.setText("Human 1");
 		name_1.setBounds(210, 69, 96, 19);
 		getContentPane().add(name_1);
+		player_1=new Player(name_1.getText(),Color.red);
+		players_attending_game[0]=player_1;
 		name_1.setColumns(10);
 		
 		name_2 = new JTextField();
-		name_2.setText("Computer 1");
+		name_2.setText("Human 2");
+		player_2=new Player(name_2.getText(),Color.blue);
+		players_attending_game[1]=player_2;
 		name_2.setBounds(210, 115, 96, 19);
 		getContentPane().add(name_2);
 		name_2.setColumns(10);
 		
 		name_3 = new JTextField();
 		name_3.setEnabled(false);
+		player_3=new Player(name_3.getText(),Color.yellow);
+		players_attending_game[2]=player_3;
 		name_3.setBounds(210, 161, 96, 19);
 		getContentPane().add(name_3);
 		name_3.setColumns(10);
 		
 		name_4 = new JTextField();
+
 		name_4.setEnabled(false);
+		player_4=new Player(name_4.getText(),Color.green);
+		players_attending_game[3]=player_4;
 		name_4.setBounds(210, 207, 96, 19);
 		getContentPane().add(name_4);
 		name_4.setColumns(10);
@@ -266,17 +276,20 @@ public class NewGameWin extends JFrame {
 				players_details = players_details + "2 "+ type_2.getSelectedItem() + " " + name_2.getText() + " " + level_2.getSelectedItem()  + "\n";
 				
 				if(choice_box_3.isSelected()) {
-					players_details = players_details + "3 "+ type_3.getSelectedItem() + " " + name_3.getText() + " " + level_3.getSelectedItem()  + "\n" ;			
+					players_details = players_details + "3 "+ type_3.getSelectedItem() + " " + name_3.getText() + " " + level_3.getSelectedItem()  + "\n" ;
+					name_3.setText(player_3.getName());
 				}
 				
 				if(choice_box_4.isSelected()) {
-					players_details = players_details + "4 "+ type_4.getSelectedItem() + " " + name_4.getText() + " " + level_4.getSelectedItem()  + "\n";			
+					players_details = players_details + "4 "+ type_4.getSelectedItem() + " " + name_4.getText() + " " + level_4.getSelectedItem()  + "\n";
+					name_3.setText(player_3.getName());
 				} 
 				
 				System.out.println(players_details);
+				System.out.println(players_attending_game.toString());
 				
                 dispose();
-                DisplayOptions dp = new DisplayOptions();
+                DisplayOptions dp = new DisplayOptions(players_attending_game);
                 dp.setVisible(true);
 			}
 		});

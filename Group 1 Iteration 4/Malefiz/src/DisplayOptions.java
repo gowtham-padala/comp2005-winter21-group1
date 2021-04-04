@@ -16,14 +16,11 @@ import java.awt.event.ActionEvent;
 public class DisplayOptions extends JFrame {
 	
 	private JPanel contentPane;
-
-	public static void main(String[] args) {
-					DisplayOptions frame = new DisplayOptions();
-					frame.setVisible(true);
-	}
+	private Player[] players;
 
 
-	public DisplayOptions() {
+	public DisplayOptions(Player[] var0) {
+		this.players=var0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 320);
 		contentPane = new JPanel();
@@ -72,7 +69,7 @@ public class DisplayOptions extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				mainBoard mb = new mainBoard();
+				mainBoard mb = new mainBoard(players);
 				mb.setVisible(true);
 			}
 		});

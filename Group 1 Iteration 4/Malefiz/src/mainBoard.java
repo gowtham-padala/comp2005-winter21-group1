@@ -22,12 +22,14 @@ public class mainBoard extends JFrame{
 	private int[][] map;
 	private int randint;
 	private Dice dice=new Dice();
+	private Player[] players;
 
 	private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
 
-	public mainBoard()
+	public mainBoard(Player[] var0)
 	{
+		this.players=var0;
 
 		Container contentPane = getContentPane();
 		setBounds(100, 100, 600, 600);
@@ -140,29 +142,29 @@ public class mainBoard extends JFrame{
 		rollBtn.setBounds(5, 26, 60, 26);
 		bottom_panel.add(rollBtn);
 
-		JLabel p1l1 = new JLabel("Player 1\r\n\r\n");
+		JLabel p1l1 = new JLabel(players[0].getName()+"\r\n\r\n");
 		p1l1.setForeground(Color.RED);
 		p1l1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p1l1.setBounds(106, 30, 100, 21);
-		//bottom_panel.add(p1l1);
+		bottom_panel.add(p1l1);
 
-		JLabel p2l2 = new JLabel("Player 2\r\n\r\n");
+		JLabel p2l2 = new JLabel(players[1].getName()+"\r\n\r\n");
 		p2l2.setForeground(Color.BLUE);
 		p2l2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p2l2.setBounds(226, 30, 100, 21);
-		//bottom_panel.add(p2l2);
+		bottom_panel.add(p2l2);
 
-		JLabel p3l3 = new JLabel("Player 3\r\n\r\n");
+		JLabel p3l3 = new JLabel(players[2].getName()+"\r\n\r\n");
 		p3l3.setForeground(Color.YELLOW);
 		p3l3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p3l3.setBounds(342, 30, 100, 21);
-		//bottom_panel.add(p3l3);
+		bottom_panel.add(p3l3);
 
-		JLabel p4l4 = new JLabel("Player 4\r\n\r\n");
+		JLabel p4l4 = new JLabel(players[3].getName()+"\r\n\r\n");
 		p4l4.setForeground(Color.GREEN);
 		p4l4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		p4l4.setBounds(458, 30, 100, 21);
-		//bottom_panel.add(p4l4);
+		bottom_panel.add(p4l4);
 		
 		JLabel diceimg = new JLabel();
 		diceimg.setIcon(dices);
@@ -186,23 +188,23 @@ public class mainBoard extends JFrame{
 	}
 	public boolean validMovements(int i, int j){
 
-		int validRow=Math.abs(i-row);
-		int validCol=Math.abs(j-row);
+		int validRow=Math.abs(i-randint);
+		int validCol=Math.abs(j-randint);
 		
-		if (validRow==1 ){
+		if (validRow==(validRow+validCol) ){
 			return true;
 		}
-		if (validCol==1){
+		if (validCol==validRow+validCol){
 			return true;
 		}
 		return false;
 
 	}
 	public void processClick(int i, int j){
-		/*if(validMovements(i,j)==false){
+		if(validMovements(i,j)==false){
 			return;
-		}*/
-		squares[row][col].setBackground(Color.PINK);
+		}
+		squares[row][col].setBackground(Color.pink);
 		squares[i][j].setBackground(Color.red);
 		row=i;
 		col=j;
