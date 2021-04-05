@@ -18,6 +18,7 @@ public class DisplayOptions extends JFrame {
 
 	private JPanel contentPane;
 	private LinkedList<Player> players;
+	private String value;
 
 
 	public DisplayOptions(LinkedList<Player> var0) {
@@ -35,9 +36,23 @@ public class DisplayOptions extends JFrame {
 		contentPane.add(board);
 
 		JComboBox boardSelection = new JComboBox();
-		boardSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Ocean", "War", "Dark", "Light", "None"}));
+		boardSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Ocean", "Dark", "Light", "None"}));
 		boardSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		boardSelection.setBounds(120, 41, 88, 29);
+
+		boardSelection.addActionListener(e->{
+			if(boardSelection.getSelectedItem().equals("Ocean")){
+				value="Ocean";
+			}else if(boardSelection.getSelectedItem().equals("Dark")){
+				value="Dark";
+			}else if(boardSelection.getSelectedItem().equals("Light")){
+				value="Light";
+			}else{
+				value=null;
+			}
+		});
+
+
 		contentPane.add(boardSelection);
 
 		JLabel window = new JLabel("Window size:");
@@ -70,8 +85,9 @@ public class DisplayOptions extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				mainBoard mb = new mainBoard(players);
+				mainBoard mb = new mainBoard(players,value);
 				mb.setVisible(true);
+				System.out.println(value);
 			}
 		});
 		startButton.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -24,12 +24,14 @@ public class mainBoard extends JFrame{
 	private int randint;
 	private Dice dice=new Dice();
 	private LinkedList<Player> players;
+	private String theme;
 
 	//private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
 
-	public mainBoard(LinkedList<Player> var0)
+	public mainBoard(LinkedList<Player> var0,String theme)
 	{
+		this.theme=theme;
 		this.players=var0;
 		Container contentPane = getContentPane();
 		setBounds(100, 100, 600, 600);
@@ -113,10 +115,27 @@ public class mainBoard extends JFrame{
 				}
 				else if (map[i][j]==0)
 				{
-					squares[i][j] = new JButton();
-					squares[i][j].setBackground(Color.BLACK);
-					squares[i][j].setEnabled(false);
-					centre_panel.add(squares[i][j]);
+					if(theme.equals("Light")) {
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(Color.white);
+						squares[i][j].setEnabled(false);
+						centre_panel.add(squares[i][j]);
+					}else if(theme.equals("Ocean")){
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(Color.cyan);
+						squares[i][j].setEnabled(false);
+						centre_panel.add(squares[i][j]);
+					}else if(theme.equals("Dark")){
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(Color.black);
+						squares[i][j].setEnabled(false);
+						centre_panel.add(squares[i][j]);
+					}else{
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(Color.darkGray);
+						squares[i][j].setEnabled(false);
+						centre_panel.add(squares[i][j]);
+					}
 				}
 				else if (map[i][j]==3)
 				{
