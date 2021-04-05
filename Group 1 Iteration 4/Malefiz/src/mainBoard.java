@@ -25,7 +25,7 @@ public class mainBoard extends JFrame{
 	private Dice dice=new Dice();
 	private LinkedList<Player> players;
 
-	private ImageIcon pawn=new ImageIcon("./pawn.jpg");
+	//private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
 
 	public mainBoard(LinkedList<Player> var0)
@@ -159,30 +159,30 @@ public class mainBoard extends JFrame{
 		rollBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rollBtn.setBounds(5, 26, 60, 26);
 		bottom_panel.add(rollBtn);
+		JLabel label0 = new JLabel();
+		JLabel label1 = new JLabel();
+		JLabel label2 = new JLabel();
+		JLabel label3 = new JLabel();
+		JLabel[] label = new JLabel[] { label0, label1, label2, label3};
+		for (int i=0;i<players.size();i++) {
+			label[i].setText(players.get(i).getName() + "\r\n\r\n");
+			label[i].setFont(new Font("Tahoma", Font.PLAIN, 13));
+			label[i].setBounds(106, 30, 100, 21);
+			if(i==0) {
+				label[i].setForeground(Color.RED);
+			}
+			if(i==1) {
+				label[i].setForeground(Color.blue);
+			}
+			if(i==2) {
+				label[i].setForeground(Color.yellow);
+			}
+			if(i==3) {
+				label[i].setForeground(Color.green);
+			}
+			bottom_panel.add(label[i]);
+		}
 
-		JLabel p1l1 = new JLabel(players.get(0).getName()+"\r\n\r\n");
-		p1l1.setForeground(Color.RED);
-		p1l1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		p1l1.setBounds(106, 30, 100, 21);
-		bottom_panel.add(p1l1);
-
-		JLabel p2l2 = new JLabel(players.get(1).getName()+"\r\n\r\n");
-		p2l2.setForeground(Color.BLUE);
-		p2l2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		p2l2.setBounds(226, 30, 100, 21);
-		bottom_panel.add(p2l2);
-
-		JLabel p3l3 = new JLabel(players.get(2).getName()+"\r\n\r\n");
-		p3l3.setForeground(Color.YELLOW);
-		p3l3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		p3l3.setBounds(342, 30, 100, 21);
-		bottom_panel.add(p3l3);
-
-		JLabel p4l4 = new JLabel(players.get(3).getName()+"\r\n\r\n");
-		p4l4.setForeground(Color.GREEN);
-		p4l4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		p4l4.setBounds(458, 30, 100, 21);
-		bottom_panel.add(p4l4);
 
 		JLabel diceimg = new JLabel();
 		diceimg.setIcon(dices);
@@ -195,7 +195,7 @@ public class mainBoard extends JFrame{
 				diceimg.setIcon(dices);
 				bottom_panel.add(diceimg);
 				turn++;
-				playerTurn = (turn%4)+1;
+				playerTurn = (turn%players.size())+1;
 				playerTurnLabel.setText("Player "+ playerTurn + "'s turn");
 			}
 		});
@@ -208,13 +208,12 @@ public class mainBoard extends JFrame{
 
 		int validRow=Math.abs(i-randint);
 		int validCol=Math.abs(j-randint);
+		int newRow=Math.abs(row-i);
+		int newCol=Math.abs(col-j);
+		if (validRow==newRow ||validCol==newCol|| validRow==newRow+newCol||validCol==newRow+newCol  ){
+			return true;
+		}
 
-		if (validRow==randint ){
-			return true;
-		}
-		if (validCol==randint){
-			return true;
-		}
 		return false;
 
 	}
@@ -222,10 +221,12 @@ public class mainBoard extends JFrame{
 		/*if(validMovements(i,j)==false){
 			return;
 		}*/
+
 		squares[row][col].setBackground(Color.pink);
 		squares[i][j].setBackground(players.get(playerTurn-1).getColor());
 		row=i;
 		col=j;
+
 	}
 	private ImageIcon createImageIcon(final String name) {
 		try {

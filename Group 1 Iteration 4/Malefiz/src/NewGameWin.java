@@ -30,12 +30,7 @@ public class NewGameWin extends JFrame {
 	private Player player_2;
 	private Player player_3;
 	private Player player_4;
-	private LinkedList<Player> players_attending_game;
-
-
-
-
-	/**
+	private LinkedList<Player> players_attending_game;	/**
 	 * Create the frame.
 	 */
 	public NewGameWin() {
@@ -105,14 +100,12 @@ public class NewGameWin extends JFrame {
 		name_2.setColumns(10);
 
 		name_3 = new JTextField();
-		name_3.setText("Human 3");
 		name_3.setEnabled(false);
 		name_3.setBounds(210, 161, 96, 19);
 		getContentPane().add(name_3);
 		name_3.setColumns(10);
 
 		name_4 = new JTextField();
-		name_4.setText("Human 4");
 		name_4.setEnabled(false);
 		name_4.setBounds(210, 207, 96, 19);
 		getContentPane().add(name_4);
@@ -164,6 +157,7 @@ public class NewGameWin extends JFrame {
 				if(choice_box_3.isSelected()){
 					type_3.setEnabled(true);
 					name_3.setEnabled(true);
+
 				}
 				else {
 					type_3.setEnabled(false);
@@ -290,6 +284,7 @@ public class NewGameWin extends JFrame {
 				players_attending_game.add(player_3);
 				player_4=new Player(name_4.getText(),Color.green);
 				players_attending_game.add(player_4);
+
 				dispose();
 				DisplayOptions dp = new DisplayOptions(players_attending_game);
 				dp.setVisible(true);
