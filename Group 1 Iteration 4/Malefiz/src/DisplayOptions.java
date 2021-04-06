@@ -19,9 +19,12 @@ public class DisplayOptions extends JFrame {
 	private JPanel contentPane;
 	private LinkedList<Player> players;
 	private String value;
+	private String windowSize;
 
 
 	public DisplayOptions(LinkedList<Player> var0) {
+		value="Default";
+		windowSize="Default";
 		this.players=var0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 320);
@@ -36,7 +39,7 @@ public class DisplayOptions extends JFrame {
 		contentPane.add(board);
 
 		JComboBox boardSelection = new JComboBox();
-		boardSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Ocean", "Dark", "Light", "None"}));
+		boardSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Ocean", "Dark", "Light"}));
 		boardSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		boardSelection.setBounds(120, 41, 88, 29);
 
@@ -48,7 +51,7 @@ public class DisplayOptions extends JFrame {
 			}else if(boardSelection.getSelectedItem().equals("Light")){
 				value="Light";
 			}else{
-				value=null;
+				value="Default";
 			}
 		});
 
@@ -65,6 +68,17 @@ public class DisplayOptions extends JFrame {
 		windowSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		windowSelection.setBounds(120, 111, 88, 29);
 		contentPane.add(windowSelection);
+		windowSelection.addActionListener(e->{
+			if(windowSelection.getSelectedItem().equals("Small")){
+				windowSize="Small";
+			}else if(windowSelection.getSelectedItem().equals("Medium")){
+				windowSize="Medium";
+			}else if(windowSelection.getSelectedItem().equals("Large")){
+				windowSize="Large";
+			}else{
+				windowSize="Default";
+			}
+		});
 
 		JLabel pawn = new JLabel("Pawn theme:");
 		pawn.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -72,7 +86,7 @@ public class DisplayOptions extends JFrame {
 		contentPane.add(pawn);
 
 		JComboBox pawnSelection = new JComboBox();
-		pawnSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Numbers", "Symbols", "None"}));
+		pawnSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Numbers", "Symbols"}));
 		pawnSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pawnSelection.setBounds(120, 179, 88, 29);
 		contentPane.add(pawnSelection);
@@ -85,7 +99,7 @@ public class DisplayOptions extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				mainBoard mb = new mainBoard(players,value);
+				mainBoard mb = new mainBoard(players,value,windowSize);
 				mb.setVisible(true);
 				System.out.println(value);
 			}
@@ -93,6 +107,7 @@ public class DisplayOptions extends JFrame {
 		startButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		startButton.setBounds(120, 244, 86, 29);
 		contentPane.add(startButton);
+		setLocationRelativeTo(null);
 
 	}
 }
