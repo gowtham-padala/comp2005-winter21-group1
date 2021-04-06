@@ -161,39 +161,72 @@ public class mainBoard extends JFrame{
 				}
 				else if (map[i][j]==3)
 				{
+
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(players.get(0).getColor());
+						squares[i][j].setText("1");
+						centre_panel.add(squares[i][j]);
+					}if(pawnTheme.equals("Default")) {
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(0).getColor());
-					if(pawnTheme.equals("Numbers")) {
-						squares[i][j].setText("1");
-					}
 					centre_panel.add(squares[i][j]);
+				}if(pawnTheme.equals("Symbols")){
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(0).getColor());
+					centre_panel.add(squares[i][j]);
+				}
 				}
 				else if (map[i][j]==4)
 				{
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(players.get(1).getColor());
+						squares[i][j].setText("2");
+						centre_panel.add(squares[i][j]);
+					}if(pawnTheme.equals("Default")) {
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(1).getColor());
-					if(pawnTheme.equals("Numbers")) {
-						squares[i][j].setText("2");
-					}
 					centre_panel.add(squares[i][j]);
+				}if(pawnTheme.equals("Symbols")) {
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(1).getColor());
+					centre_panel.add(squares[i][j]);
+				}
 				}
 				else if (map[i][j]==5)
 				{
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(players.get(2).getColor());
+						squares[i][j].setText("3");
+						centre_panel.add(squares[i][j]);
+					}if(pawnTheme.equals("Default")) {
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(2).getColor());
-					if(pawnTheme.equals("Numbers")) {
-						squares[i][j].setText("3");
-					}
 					centre_panel.add(squares[i][j]);
+				}if(pawnTheme.equals("Symbols")){
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(2).getColor());
+					centre_panel.add(squares[i][j]);
+				}
 				}
 				else if (map[i][j]==6)
 				{
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j] = new JButton();
+						squares[i][j].setBackground(players.get(3).getColor());
+						squares[i][j].setText("4");
+						centre_panel.add(squares[i][j]);
+					}if(pawnTheme.equals("Default")) {
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(3).getColor());
-					if(pawnTheme.equals("Numbers")) {
-						squares[i][j].setText("4");
-					}
 					centre_panel.add(squares[i][j]);
+				}if(pawnTheme.equals("Symbols")){
+					squares[i][j] = new JButton();
+					squares[i][j].setBackground(players.get(3).getColor());
+					centre_panel.add(squares[i][j]);
+				}
 				}
 				else
 				{

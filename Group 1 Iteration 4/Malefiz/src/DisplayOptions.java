@@ -91,18 +91,16 @@ public class DisplayOptions extends JFrame {
 		pawnSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Numbers", "Symbols"}));
 		pawnSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pawnSelection.setBounds(120, 179, 88, 29);
+		contentPane.add(pawnSelection);
 		pawnSelection.addActionListener(e->{
-			if(pawnSelection.getSelectedItem().equals("Default")){
-				pawnTheme="Default";
-			}else if(boardSelection.getSelectedItem().equals("Numbers")){
-				pawnTheme="Numbers";
-			}else if(boardSelection.getSelectedItem().equals("Symbols")){
+			if(pawnSelection.getSelectedItem().equals("Symbols")){
 				pawnTheme="Symbols";
+			}else if(pawnSelection.getSelectedItem().equals("Numbers")){
+				pawnTheme="Numbers";
 			}else{
-				pawnTheme=null;
+				pawnTheme="Default";
 			}
 		});
-		contentPane.add(pawnSelection);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 229, 326, 2);
@@ -114,7 +112,7 @@ public class DisplayOptions extends JFrame {
 				dispose();
 				mainBoard mb = new mainBoard(players,value,windowSize,pawnTheme);
 				mb.setVisible(true);
-				System.out.println(value);
+				System.out.println(pawnTheme);
 			}
 		});
 		startButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
