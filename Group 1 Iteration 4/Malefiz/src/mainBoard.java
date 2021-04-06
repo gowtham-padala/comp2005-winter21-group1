@@ -26,15 +26,17 @@ public class mainBoard extends JFrame{
 	private LinkedList<Player> players;
 	private String theme;
 	private String windowSize;
+	private String pawnTheme;
 
 	//private ImageIcon pawn=new ImageIcon("./pawn.jpg");
 	private ImageIcon dices=createImageIcon("images/dice_1.png");
 
-	public mainBoard(LinkedList<Player> var0,String theme,String windowSize)
+	public mainBoard(LinkedList<Player> var0,String theme,String windowSize,String pawnTheme)
 	{
 		this.theme=theme;
 		this.windowSize=windowSize;
 		this.players=var0;
+		this.pawnTheme=pawnTheme;
 		Container contentPane = getContentPane();
 		if(windowSize.equals("Small")){
 			setBounds(100, 100, 400, 400);
@@ -161,24 +163,36 @@ public class mainBoard extends JFrame{
 				{
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(0).getColor());
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j].setText("1");
+					}
 					centre_panel.add(squares[i][j]);
 				}
 				else if (map[i][j]==4)
 				{
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(1).getColor());
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j].setText("2");
+					}
 					centre_panel.add(squares[i][j]);
 				}
 				else if (map[i][j]==5)
 				{
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(2).getColor());
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j].setText("3");
+					}
 					centre_panel.add(squares[i][j]);
 				}
 				else if (map[i][j]==6)
 				{
 					squares[i][j] = new JButton();
 					squares[i][j].setBackground(players.get(3).getColor());
+					if(pawnTheme.equals("Numbers")) {
+						squares[i][j].setText("4");
+					}
 					centre_panel.add(squares[i][j]);
 				}
 				else

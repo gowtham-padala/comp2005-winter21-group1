@@ -20,11 +20,13 @@ public class DisplayOptions extends JFrame {
 	private LinkedList<Player> players;
 	private String value;
 	private String windowSize;
+	private String pawnTheme;
 
 
 	public DisplayOptions(LinkedList<Player> var0) {
 		value="Default";
 		windowSize="Default";
+		pawnTheme="Default";
 		this.players=var0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 320);
@@ -89,6 +91,17 @@ public class DisplayOptions extends JFrame {
 		pawnSelection.setModel(new DefaultComboBoxModel(new String[] {"Default", "Numbers", "Symbols"}));
 		pawnSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pawnSelection.setBounds(120, 179, 88, 29);
+		pawnSelection.addActionListener(e->{
+			if(pawnSelection.getSelectedItem().equals("Default")){
+				pawnTheme="Default";
+			}else if(boardSelection.getSelectedItem().equals("Numbers")){
+				pawnTheme="Numbers";
+			}else if(boardSelection.getSelectedItem().equals("Symbols")){
+				pawnTheme="Symbols";
+			}else{
+				pawnTheme=null;
+			}
+		});
 		contentPane.add(pawnSelection);
 
 		JSeparator separator = new JSeparator();
@@ -99,7 +112,7 @@ public class DisplayOptions extends JFrame {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				mainBoard mb = new mainBoard(players,value,windowSize);
+				mainBoard mb = new mainBoard(players,value,windowSize,pawnTheme);
 				mb.setVisible(true);
 				System.out.println(value);
 			}
